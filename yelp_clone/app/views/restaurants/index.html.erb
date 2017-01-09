@@ -1,3 +1,9 @@
-No restaurants yet
+<% if Restaurant.all.any? %>
+  <% Restaurant.all.each do |restaurant| %>
+   <li><%= restaurant.name %></li>
+  <% end %>
+<% else %>
+  No restaurants yet
+<% end %>
 <br>
 <a href="#">Add a restaurant</a>
