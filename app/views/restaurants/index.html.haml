@@ -4,4 +4,5 @@
     = link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) # this means "/restaurants/#{restaurant.id}/edit"
 - else
   %h1 No restaurants yet!
+%br
 %a(href=new_restaurant_path) Add a restaurant
