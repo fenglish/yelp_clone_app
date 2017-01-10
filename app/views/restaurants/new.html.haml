@@ -1,6 +1,8 @@
 = form_for @restaurant do |f|
   = f.label :name, "Restaurant name"
   = f.text_field :name
+  %br
   = f.label :description, "What does the restaurant serves?"
   = f.text_field :description
+  %br
   = f.submit "Add new one!"
