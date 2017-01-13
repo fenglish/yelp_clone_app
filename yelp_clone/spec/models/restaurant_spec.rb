@@ -26,7 +26,10 @@ describe Restaurant, type: :model do
     end
 
     describe '#average_rating' do
-      # let(:user1){ User.create email: 'test1@test.com', password: "testtest", password_confirmation: "testtest" }
+
+      let(:user1){ User.create email: 'test1@test.com', password: "testtest", password_confirmation: "testtest" }
+      let(:user2){ User.create email: 'test2@test.com', password: "testtest", password_confirmation: "testtest" }
+      
       context "no reviews" do
         it "returns 'N/A' when there are no reviews" do
           restaurant = Restaurant.create(name: 'The Ivy')
@@ -36,23 +39,21 @@ describe Restaurant, type: :model do
 
       context "1 review" do
         it "returns the rating" do
-          user1 = User.create(email: 'test1@test.com', password: "testtest", password_confirmation: "testtest")
           restaurant = Restaurant.create(name: 'The Ivy', description: 'food', user_id: user1.id)
-          restaurant.reviews.create(rating: 4)
+          restaurant.reviews.create(rating: 4, user_id: user1.id)
           expect(restaurant.average_rating).to eq 4
         end
       end
 
       context "multiple reviews" do
         it "returns the average" do
-          user1 = User.create(email: 'test1@test.com', password: "testtest", password_confirmation: "testtest")
-          user2 = User.create(email: 'test2@test.com', password: "testtest", password_confirmation: "testtest")
           restaurant = Restaurant.create(name: 'The Ivy', description: 'food', user_id: user1.id)
           restaurant.reviews.create(rating: 1, user_id: user1.id)
           restaurant.reviews.create(rating: 5, user_id: user2.id)
           expect(restaurant.average_rating).to eq 3
         end
       end
+
     end
   end
 
