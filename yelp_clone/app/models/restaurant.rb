@@ -6,12 +6,14 @@ class Restaurant < ApplicationRecord
 
   def average_rating
     return 'N/A' if reviews.none?
-    array = []
-    reviews.each do |review|
-      array << review.rating
-    end
-    array.inject(:+) / array.length
+    reviews.inject(0) {|memo, review| memo + review.rating} / reviews.length
   end
+
+  # def average_rating
+  #   return 'N/A' if reviews.none?
+  #   # reviews.inject(0) {|memo, review| memo + review.rating} / reviews.count
+  # end
+
   # def average_rating
   #   return 'N/A' if reviews.none?
   #   reviews.average(:rating)
