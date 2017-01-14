@@ -1,6 +1,7 @@
 - if @restaurants.any?
   - @restaurants.each do |restaurant|
     %h2= link_to restaurant.name, restaurant_path(restaurant)
+    = image_tag restaurant.image.url(:thumb)
     %p= restaurant.description
     -if @user
       = link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant)
